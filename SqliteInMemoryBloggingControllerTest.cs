@@ -25,12 +25,12 @@ public class SqliteInMemoryBloggingControllerTest : IDisposable
         if (context.Database.EnsureCreated())
         {
             Console.WriteLine ("created the database from the model");
-            using var viewCommand = context.Database.GetDbConnection().CreateCommand();
-            viewCommand.CommandText = @"
-CREATE VIEW AllResources AS
-SELECT Url
-FROM Blogs;";
-            viewCommand.ExecuteNonQuery();
+            //            using var viewCommand = context.Database.GetDbConnection().CreateCommand();
+            //            viewCommand.CommandText = @"
+            //CREATE VIEW AllResources AS
+            //SELECT Url
+            //FROM Blogs;";
+            //            viewCommand.ExecuteNonQuery();
         }
 
         context.AddRange(
