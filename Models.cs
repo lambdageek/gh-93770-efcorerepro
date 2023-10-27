@@ -32,6 +32,7 @@ public class BloggingContext : DbContext
     public DbSet<Blog> Blogs => Set<Blog>();
     public DbSet<UrlResource> UrlResources => Set<UrlResource>();
 
+#if false
     public DbSet<IdentityUser> AspNetUsers => Set<IdentityUser>();
 
     public DbSet<IdentityUserClaim<string>> AspNetUserClaims => Set<IdentityUserClaim<string>>();
@@ -39,6 +40,7 @@ public class BloggingContext : DbContext
     public DbSet<IdentityUserLogin<string>> AspNetUserLogins => Set<IdentityUserLogin<string>>();
 
     public DbSet<IdentityUserToken<string>> AspNetUserTokens => Set<IdentityUserToken<string>>();
+#endif
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -53,7 +55,7 @@ public class BloggingContext : DbContext
     {
         modelBuilder.Entity<UrlResource>().HasNoKey()
             .ToView("AllResources");
-        OnModelCreatingVersion1(modelBuilder);
+        // OnModelCreatingVersion1(modelBuilder);
 
         if (_modelCustomizer is not null)
         {
@@ -61,6 +63,7 @@ public class BloggingContext : DbContext
         }
     }
 
+#if false
     internal virtual void OnModelCreatingVersion1(ModelBuilder builder)
     {
         //var storeOptions = GetStoreOptions();
@@ -117,6 +120,7 @@ public class BloggingContext : DbContext
             b.ToTable(nameof(AspNetUserTokens));
         });
     }
+#endif
 }
 
 public class Blog
