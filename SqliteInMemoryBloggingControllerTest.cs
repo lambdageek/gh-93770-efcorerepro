@@ -20,26 +20,14 @@ public class SqliteInMemoryBloggingControllerTest : IDisposable
             .Options;
 
         // Create the schema and seed some data
-        using var context = new BloggingContext(_contextOptions);
+        var context = new BloggingContext(_contextOptions);
 
         if (context.Database.EnsureCreated())
         {
-            Console.WriteLine ("created the database from the model");
-            //            using var viewCommand = context.Database.GetDbConnection().CreateCommand();
-            //            viewCommand.CommandText = @"
-            //CREATE VIEW AllResources AS
-            //SELECT Url
-            //FROM Blogs;";
-            //            viewCommand.ExecuteNonQuery();
+            Console.WriteLine("created the database from the model");
         }
-
-        context.AddRange(
-            new Blog { Name = "Blog1", Url = "http://blog1.com" },
-            new Blog { Name = "Blog2", Url = "http://blog2.com" });
-        context.SaveChanges();
+        // context.Dispose();
     }
 
-    public BloggingContext CreateContext() => new BloggingContext(_contextOptions);
-
-    public void Dispose() => _connection.Dispose();
+    public void Dispose() { } // => _connection.Dispose();
 }
