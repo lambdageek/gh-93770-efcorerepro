@@ -4,4 +4,5 @@ using Microsoft.EntityFrameworkCore;
 
 
 Console.WriteLine("starting");
+
 var _ = new SqliteInMemoryBloggingControllerTest();
